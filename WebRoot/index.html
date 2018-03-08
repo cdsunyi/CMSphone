@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index.html</title>
+<base href="#(contextPath)/" />
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+<script src="dist/js/jquery-2.1.4.min.js"></script>
+<script src="dist/js/jquery.form.min.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript">
+
+function doSubmit(){
+	alert("ok");
+	 	$("#form").ajaxSubmit({
+			type : "post", 
+			dataType : "json", 
+			success : function(data) { 
+				if(data.errorCode == 0){
+					location.reload();
+				}else{
+					toastr.error(data.message,'操作失败');
+				}
+			},
+			error : function() {
+				alert("信息提交错误");
+			}
+	});
+}
+
+</script>
+</head>
+
+<body>
+	
+	<br>
+
+<form action="blog/select" method="post">
+	<select   type="text" class="form-control input-md" name="blog.role" >
+		<option value="10">将角色更为</option>
+		<option value="25">订阅者</option>
+		<option value="50">投稿者</option>
+		<option value="25">作者</option>
+		<option value="50">编辑</option>
+		<option value="25">管理员</option>				
+	</select>
+	<button type="button" onclick="doSubmit()" class="btn btn-primary">保存更改</button>
+</form>
+
+
+
+
+	<table>
+	<tbody>
+		<tr>
+			<th>序号</th>
+			<th>标题</th>
+			<th>内容</th>
+		</tr>
+
+		#for(x : pagetitle.getList())
+		<tr>
+			<td>#(x.id)</td>
+			<td>#(x.title)</td>
+			<td>#(x.parent_id)</td>
+			<td> <a href="/blog/edit/#(x.id)">修改</a> </td>
+			<td> <a href="">删除</a> </td>
+		</tr>
+		#end
+	</tbody>
+
+	</table>
+	#@paginate(blogPage.pageNumber, blogPage.totalPage, "/blog/")
+</body>
+</html>

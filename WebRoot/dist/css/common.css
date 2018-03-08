@@ -1,0 +1,29 @@
+/* 顶部导航栏的样式 */
+.topNar{
+    width:100%;
+    height:48px;
+    background-color: #1690ff;
+    display: block;
+    line-height: 48px;
+    text-align: center;
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
+}
+
+.topNar h1{
+    font-size: 24px;
+    color: #fff;
+    font-weight: normal;
+
+}
+
+.topNar span{
+    position: fixed;
+    top:8px;
+    left:12px;
+    width: 32px;
+    height: 32px;
+}

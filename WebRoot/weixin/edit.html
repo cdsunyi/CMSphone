@@ -1,0 +1,301 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<base href="#(contextPath)/" />
+<title>投资者教育</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<!-- head 中 -->
+
+<link rel="stylesheet" href="dist/lib/weui.min.css">
+<link rel="stylesheet" href="dist/css/jquery-weui.min.css">
+<link rel="stylesheet" href="dist/css/common.css">
+
+
+
+</head>
+
+<style type="text/css">
+.swiper-container {
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+}
+
+.swiper-container img {
+	display: block;
+	width: 100%;
+}
+
+.weui-navbar {
+	position: relative;
+}
+
+.post-time {
+	margin-top: .2em;
+	font-size: 14px;
+	color: #B3B3B3;
+	text-align: right;
+}
+
+.weui-media-box__desc {
+	margin-top: .2em;
+	padding-bottom: .2em;
+}
+
+.weui-media-box__title {
+	padding: .2em 0;
+}
+</style>
+
+<body ontouchstart>
+
+<!-- 	<div class="topNar">
+    	<span><img src="dist/img/back.png"></span>
+    	<h1>文章详情</h1>
+	</div> -->
+	<!-- 轮播图部分 开始 -->
+	<div class="swiper-container">
+	
+	
+	#(mytest.getName())
+		<!--  Additional required wrapper-->
+		<div class="swiper-wrapper">
+			#if(rollpic.size() != 0)
+				
+				#for(pic : rollpic)
+					<div  class="swiper-slide">
+						#if(pic.thumbnail == null)
+							<img href="dev/passage/#(pic.id)" title="weixin/passage/#(pic.id)" src="dist/img/swiper-1.jpg" />
+						#else
+							<img href="dev/passage/#(pic.id)" title="weixin/passage/#(pic.id)" src="#(pic.thumbnail)">
+						#end
+						
+					</div>
+				#end
+				
+			#else
+				Slides
+				<div class="swiper-slide">
+					<img src="dist/img/swiper-1.jpg" />
+				</div>
+				<div class="swiper-slide">
+					<img src="dist/img/swiper-2.jpg" />
+				</div>
+				<div class="swiper-slide">
+					<img src="dist/img/swiper-3.jpg" />
+				</div>
+			#end
+			
+
+		</div>
+		If we need pagination
+		<div class="swiper-pagination"></div>
+	</div>
+
+	<!-- 轮播图部分 结束 -->
+
+	<div class="weui-tab">
+		<div class="weui-navbar">
+			#for(x : pagetitle.getList()) 
+				<!-- <a class="weui-navbar__item" href=""  onclick="loadItem(#(x.id))">#(x.title)</a>  -->
+				<!-- <a class="weui-navbar__item" href="pobo:pageId=900004&title=nihao&url=/dev/#(x.id)" >#(x.title)</a> -->
+				<a class="weui-navbar__item" href="pobo:pageId=900004&title=nihao&url=http://121.8.107.173:30080/CMS/dev/#(x.id)" >#(x.title)</a> 
+			#end
+		</div>
+		<div  class="weui-tab__bd" style="padding-top: 0">
+			<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+				<div class="weui-panel weui-panel_access" id="itemInfo">
+					#for(item : listitem)
+					<div class="weui-panel__bd">						 
+						<a href="pobo:pageId=900004&title=nihao&url=http://121.8.107.173:30080/CMS/dev/passage/#(item.id)" class="weui-media-box weui-media-box_appmsg">
+						
+							<div class="weui-media-box__hd">
+								#if(item.thumbnail == null)
+								<img class="weui-media-box__thumb" id="imgItemId" src="dist/img/square.png">
+								#else
+								<img class="weui-media-box__thumb" src="#(item.thumbnail)">
+								#end
+								
+							</div>
+							<div class="weui-media-box__bd">
+								<h4 class="weui-media-box__title">#(item.get("title"))</h4>
+								#if(item.remarks == null)
+								<p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+								#else
+								<p class="weui-media-box__desc">#(item.remarks)</p>
+								#end
+								
+								<p class="post-time">#(item.created)</p>
+							</div>
+						</a> 					
+					</div>
+					#end
+					
+<!-- 					#for(item : listitem)
+					<div class="weui-panel__bd">						 
+						<a href="dev/passage/#(item.id)" class="weui-media-box weui-media-box_appmsg">
+							<div class="weui-media-box__hd">
+								<img class="weui-media-box__thumb" id="imgItemId" src="">							
+							</div>
+							<div class="weui-media-box__bd">
+								<h4 class="weui-media-box__title" id="titleItem"></h4>
+								<p class="weui-media-box__desc" id="remarkstemId"></p>								
+								<p class="post-time" id="createdItemId"></p>
+							</div>
+						</a> 					
+					</div>
+					#end -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			alert("ok");
+		});
+		
+		$(function(){  
+		   alert("ok");
+		}); 
+		
+		function loadItem(values){
+			alert(values);
+						
+			$.ajax("dev/", {
+				type: "POST"
+				, cache: false
+				, dataType: "json"
+				, data: {
+					id: values,
+					//replyContent: $('#replyContent').val()
+				}
+				, beforeSend: function() {
+					/* map.isLoading = true;
+					map.submit_btn.hide();
+					map.submit_loading.show(); */
+				}
+				, success: function(ret) {
+					alert("ok");
+					
+					var list = ret.listitem;
+					$("#itemInfo").empty();
+					for(var i = 0;i<list.length;i++){
+						var thumbnail = list[i].thumbnail;
+						var title = list[i].title;
+						var remarks = list[i].remarks;
+						var created = list[i].created;
+						var itemid = list[i].id;
+						var iteminfo=	"<div class=\"weui-panel__bd\">"+						 
+												"<a href=\"dev/passage/"+itemid+"\" class=\"weui-media-box weui-media-box_appmsg\">"+
+													"<div class=\"weui-media-box__hd\">"+
+														"<img class=\"weui-media-box__thumb\" id=\"imgItemId\" src=\""+thumbnail+"\">"+							
+													"</div>"+
+													"<div class=\"weui-media-box__bd\">"+
+														"<h4 class=\"weui-media-box__title\" id=\"titleItem\">"+title+"</h4>"+
+														"<p class=\"weui-media-box__desc\" id=\"remarkstemId\">"+remarks+"</p>"+								
+														"<p class=\"post-time\" id=\"createdItemId\">"+created+"</p>"+
+													"</div>"+
+												 "</a>"+					
+											"</div>";	">";	
+						
+						alert(#(mytest.getName()));
+						
+						$("#itemInfo").append(iteminfo);
+					/* 	$("#createdItemId").text(created);
+						$("#imgItemId").attr('src',thumbnail);
+						$("#titleItem").text(title);
+						$("#remarkstemId").text(remarks);  */
+						
+						
+					}
+					
+					
+
+				}//success
+				, complete: function() {
+					/* map.submit_loading.hide();
+					map.submit_btn.show();
+					map.isLoading = false; */
+				}
+			});
+			//window.location.href="dev/"+values;
+			//window.location.replace("dev/"+values);
+		}
+	
+		$(function(){ 
+			window.addEventListener("popstate", function(e) { 
+			alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能 
+			}, false);
+		})
+		
+		function myft(val){
+			
+			var urlStr = "dev/"+val;
+			alert(urlStr);
+			window.location.replace(urlStr);
+		}
+	
+
+	</script>
+	
+		<script src="dist/lib/jquery-2.1.4.js"></script>
+		<script src="dist/js/jquery-weui.min.js"></script>
+		<script src="dist/js/swiper.js"></script>
+		<script>
+      $(".swiper-container").swiper({
+        loop: true,
+        autoplay: 3000
+      });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

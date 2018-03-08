@@ -1,0 +1,86 @@
+
+
+.passage{
+    padding: 16px 15px;
+    margin-top: 48px;
+
+}
+
+.passage_title{
+    font-size: 24px;
+    color: #3F3F3F;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    display:-webkit-box;//对象作为弹性伸缩盒子模型显示 
+            -webkit-box-orient: vertical;//设置或检索伸缩盒对象的子元素的排列方式 
+            -webkit-line-clamp: 2;//溢出省略的界限
+    overflow:hidden;//设置隐藏溢出元素
+
+
+
+}
+
+.passage_info{
+    position: relative;
+    display: flex;
+    margin: 20px 0;
+}
+
+.editor_img{
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+}
+
+.editor_img img{
+    width: 100%;
+    max-height: 100%;
+}
+
+.editor_info{
+    flex: 1;
+    margin-left: 16px;
+    color: #3F3F3F;
+}
+
+.editor_time{
+    color: #b3b3b3;
+    font-size: 14px;
+}
+
+.passage_read{
+    width: 68px;
+    height: 32px;
+
+    text-align: center;
+    line-height: 32px;
+    font-size: 14px;
+    color: #B3B3B3;
+    margin-top: 10px;
+}
+
+.read{
+    width:22px;
+    display: inline-block;
+    vertical-align:middle;
+    margin: 2px 2px 0 0;
+}
+
+.read img{
+    width:100%;
+}
+
+.passage_context h4{
+    font-weight: bold;
+}
+
+.passage_context p{
+    text-indent: 2em;
+    line-height: 1.8;
+}
+
+.passage_context img{
+    max-width: 100%;
+    margin: 16px 0;
+}
+

@@ -1,0 +1,4 @@
+jdbcUrl = jdbc:mysql://localhost/gfqhcms?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+user = root
+password =1234567
+devMode = true
